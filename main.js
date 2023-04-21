@@ -50,8 +50,8 @@ document.addEventListener('DOMContentLoaded', (arg) => {
             const homeScore = document.createElement('td');
             const awayScore = document.createElement('td');
 
-            home.innerText = 'Home';
-            away.innerText = 'Away';
+            home.innerText = 'Home ';
+            away.innerText = 'Away ';
             homeTeam.innerText = `${scores[i].home}`;
             awayTeam.innerText = `${scores[i].away}`;
             homeScore.innerText = `${scores[i].home_score}`;
@@ -86,5 +86,18 @@ document.addEventListener('DOMContentLoaded', (arg) => {
         )
         .catch(err => console.error(err));
 
+//LIVE ODDS
+const oddOptions = {
+	method: 'GET',
+	headers: {
+		'X-RapidAPI-Key': '8004f8e042msh22553afac6caa3bp1e5a86jsn03b72eab8ba2',
+		'X-RapidAPI-Host': 'odds.p.rapidapi.com'
+	}
+};
+
+fetch('https://odds.p.rapidapi.com/v4/sports/baseball_mlb/odds?regions=us&oddsFormat=american&markets=h2h%2Cspreads&dateFormat=iso', oddOptions)
+	.then(response => response.json())
+	.then(response => console.log(response))
+	.catch(err => console.error(err));   
 });
 
